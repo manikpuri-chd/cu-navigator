@@ -2,7 +2,7 @@ export const campusSpots =[
     {
         id:1,
         name : "C1",
-        category : "Acadmic",
+        category : "Academic",
         zone:"Near gate 4",
         description : "have a cool and good food court at the ground of this block "
 
@@ -17,7 +17,7 @@ export const campusSpots =[
     {
         id:3,
         name:"C3",
-        category:"Acadmic",
+        category:"Academic",
         zone:"Near gate 4",
         description:"very good teachers"
     },
