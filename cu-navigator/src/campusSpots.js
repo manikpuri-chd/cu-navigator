@@ -12,7 +12,7 @@ export const campusSpots =[
         name:"C2",
         category:"Academic",
         zone:"Near gate 4",
-        description:"Main CSE academic block with labs and seminar halls"
+        description:"Main CSE academic block"
     },
     {
         id:3,
