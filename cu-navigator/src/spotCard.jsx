@@ -1,10 +1,11 @@
-export function SpotCard({spot}){
+
+export function SpotCard({spot,onSelect}){
     return(
-          <div key={spot.id} className="spot-card">
-          <h2>{spot.name}</h2>
-          <span className="categories">{spot.category}</span>
-          <p>{spot.zone}</p>
-          <p>{spot.description}</p>
-          </div>
+          <div className="spot-card" onClick={() => onSelect(spot)}>
+            <h2>{spot.name}</h2>
+            <span>{spot.category}</span>
+            <p>{spot.zone}</p>
+            <p>{spot.description}</p>
+        </div>
     )
 }
