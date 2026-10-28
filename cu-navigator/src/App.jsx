@@ -56,7 +56,10 @@ function App(){
       <div className="spot-overlay">
         <div className="spot-box">
           <h2>{selectedSpots.name}</h2>
+          <span>{selectedSpots.category}</span>
+            <p>{selectedSpots.zone}</p>
           <p>{selectedSpots.description}</p>
+          
           <button onClick={() =>  setSelectedSpots(null)} >Close</button>
         </div>
       </div>
