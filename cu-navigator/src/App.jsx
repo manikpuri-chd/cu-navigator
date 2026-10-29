@@ -4,9 +4,31 @@ import './App.css';
 import { SpotCard } from "./spotCard";
 
 function App(){
+  const categories=[
+    "All",
+    "Academic",
+    "Student Services",
+     "Food",
+      "Cafe",
+       "Sports",
+        "Hangout Spots"
+  ]
   const [selectedCategory,setSelectedCategory] = useState("All")
   const [searchQuery,setSearchQuery]=useState("")
-  const [selectedSpots,setSelectedSpots]=useState("All")
+  const [selectedSpots,setSelectedSpots]=useState(null)
+  const [savedSpots,setSavedSpots]=useState([])
+  
+  function toggleSaveSpots(spot){
+    const isAlreadySaved = savedSpots.some((item)=> item.id===spot.id)
+    if(isAlreadySaved){
+      setSavedSpots(savedSpots.filter((item)=>item.id !== spot.id))
+    }
+    else{
+      setSavedSpots([...savedSpots,spot])
+    }
+    
+  }
+
   const filteredSpots = campusSpots.filter((spot)=>{
     const matchesCategory = selectedCategory === "All" || spot.category === selectedCategory;
     const matchesSearch = spot.name.toLowerCase().includes(searchQuery.toLowerCase());
@@ -29,12 +51,18 @@ function App(){
     
     <div className="filter-bar">
       <p className="results-count">Showing {filteredSpots.length} of {campusSpots.length} campus spots</p>
-    <button className={selectedCategory==="All"?"active-btn":""}
-    onClick={()=>setSelectedCategory("All")}>All</button>
-    <button className={selectedCategory==="Academic"?"active-btn":""}
-    onClick={()=>setSelectedCategory("Academic")}>Academic</button>
-    <button className={selectedCategory==="Hangout Spots"?"active-btn":""}
-    onClick={()=>setSelectedCategory("Hangout Spots")}>Hangout Spots</button>
+      <p className="saved-spot">saved spots={savedSpots.length}</p>
+    {categories.map((category)=>(
+      <button key={category} className={selectedCategory===category?"active-btn":""}
+      onClick={()=>setSelectedCategory(category)}>{category}</button>
+    ))}
+    
+ {(selectedCategory !== "All" || searchQuery !== "")&&(
+      <button className="Reset-Filter"
+      onClick={()=>{setSelectedCategory("All") ; setSearchQuery("")}}
+      > Reset Filter </button>
+  )}
+  
     </div>
     </div>
     <div className="spots-grid">
@@ -47,7 +75,8 @@ function App(){
         <SpotCard 
         key={spot.id} 
         spot={spot}
-        onSelect={setSelectedSpots}/>
+        onSelect={setSelectedSpots}
+        onSave={toggleSaveSpots}/>
       ))
       )}
       
