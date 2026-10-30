@@ -1,12 +1,12 @@
 
-export function SpotCard({spot,onSelect,onSave}){
+export function SpotCard({spot,onSelect,onSave,isSaved}){
     return(
           <div className="spot-card" onClick={() => onSelect(spot)}>
             <h2>{spot.name}</h2>
-            <span>{spot.category}</span>
+            <span className="categories">{spot.category}</span>
             <p>{spot.zone}</p>
             <p>{spot.description}</p>
-            <button onClick={()=> onSave(spot)}>Save ⭐</button>
+            <button className={isSaved ? "saved-btn" : ""} onClick={(e)=> {e.stopPropagation() ; onSave(spot)}} >{isSaved ? "Saved 🌟": "Save ⭐"}</button>
             
         </div>
     )

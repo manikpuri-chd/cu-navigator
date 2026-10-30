@@ -82,7 +82,8 @@ function App(){
         key={spot.id} 
         spot={spot}
         onSelect={setSelectedSpots}
-        onSave={toggleSaveSpots}/>
+        onSave={toggleSaveSpots}
+        isSaved={savedSpots.some((item)=>item.id===spot.id)}/>
       ))
       )}
       
