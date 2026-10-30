@@ -1,3 +1,7 @@
+main{
+  background-color: #0f172a;
+}
+
 .spots-grid{
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -8,6 +12,9 @@
 
 .spot-card{
   background-color: #1e293b;
+  justify-content: space-between;
+  transition: all 0.2s ease;
+  cursor: pointer;
   border: 1px solid #651d23;
   padding:20px;
   border-radius: 12px;
@@ -15,7 +22,25 @@
   flex-direction: column;
   gap:10px;
 }
+.spot-card:hover{
+  transform: translateY(-4px);
+  border-color: #38bdf8;
+}
 
+.spot-card button{
+  background-color: #0f172a;
+  color: #f8fafc;
+  border: 1px solid #334155;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.spot-card button:hover{
+  border-color: #f59e0b;
+  color: #f59e0b;
+}
 .categories{
   background-color: #0284c7;
   color: #ffffff;
@@ -49,6 +74,10 @@
   justify-content: center;
   gap:12px;
   margin-bottom: 24px;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 900px;
+  margin-bottom: 25px;
 }
 
 .filter-bar button{
@@ -71,6 +100,11 @@
   border-color: #0284c7;
   font-weight: bold;
 }
+.filter-bar button.Reset-Filter{
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
 
 .no-results{
   display: flex;

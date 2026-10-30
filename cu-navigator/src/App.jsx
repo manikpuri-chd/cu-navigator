@@ -30,9 +30,10 @@ function App(){
   }
 
   const filteredSpots = campusSpots.filter((spot)=>{
-    const matchesCategory = selectedCategory === "All" || spot.category === selectedCategory;
+    const  isSpotSaved = savedSpots.some((item)=>item.id===spot.id)
+    const matchesCategory = selectedCategory === "All" || spot.category === selectedCategory || (selectedCategory==="Saved" && isSpotSaved);
     const matchesSearch = spot.name.toLowerCase().includes(searchQuery.toLowerCase());
-
+    
     return matchesCategory && matchesSearch ;
   });
   return (
@@ -48,10 +49,15 @@ function App(){
     value={searchQuery}
     onChange={(e)=>setSearchQuery(e.target.value)}
     />
-    
+       <p className="results-count" style={{ textAlign: "center", color: "#94a3b8", marginBottom: "12px" }}>Showing {filteredSpots.length} of {campusSpots.length} campus spots</p>
     <div className="filter-bar">
-      <p className="results-count">Showing {filteredSpots.length} of {campusSpots.length} campus spots</p>
-      <p className="saved-spot">saved spots={savedSpots.length}</p>
+     
+
+      <button clasName="saves"
+      onClick={()=>{setSelectedCategory("Saved")}}
+        className={selectedCategory === "Saved" ? "active-btn" : ""}
+      > Saved ({savedSpots.length}) </button>
+
     {categories.map((category)=>(
       <button key={category} className={selectedCategory===category?"active-btn":""}
       onClick={()=>setSelectedCategory(category)}>{category}</button>
